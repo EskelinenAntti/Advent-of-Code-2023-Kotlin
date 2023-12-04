@@ -1,6 +1,6 @@
 package com.eskelinenantti.answers
 
-import com.eskelinenantti.resources.readResource
+import com.eskelinenantti.resources.inputForPuzzle
 
 object Solution2B {
     data class Game(val id: Int, val maxRed: Int, val maxBlue: Int, val maxGreen: Int) {
@@ -25,9 +25,9 @@ object Solution2B {
 
 fun main() {
 
-    val dataset = readResource("/inputs/2.txt")
+    val dataset = inputForPuzzle(2)
 
-    val sum = dataset.split("\n").map(Solution2B.Game.Companion::from).sumOf {
+    val sum = dataset.map(Solution2B.Game.Companion::from).sumOf {
         it.maxRed * it.maxBlue * it.maxGreen
     }
     println(sum)

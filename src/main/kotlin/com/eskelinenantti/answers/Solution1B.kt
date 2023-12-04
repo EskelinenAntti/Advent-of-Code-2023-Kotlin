@@ -1,6 +1,6 @@
 package com.eskelinenantti.answers
 
-import com.eskelinenantti.resources.readResource
+import com.eskelinenantti.resources.inputForPuzzle
 
 fun String.replaceWithAnyOf(
     strings: Map<String, String>,
@@ -19,7 +19,7 @@ fun String.replaceLastWithAnyOf(
 ): String = replaceWithAnyOf(strings) { findLastAnyOf(it) }
 
 fun main() {
-    val rows = readResource("/inputs/1.txt")
+    val rows = inputForPuzzle(1)
 
     val digitsByWords = mapOf(
         "one" to "1",
@@ -33,7 +33,7 @@ fun main() {
         "nine" to "9"
     )
 
-    val sum = rows.split("\n").sumOf { row ->
+    val sum = rows.sumOf { row ->
         val first = row.replaceWithAnyOf(digitsByWords).first { it.isDigit() }
         val last = row.replaceLastWithAnyOf(digitsByWords).last { it.isDigit() }
         "$first$last".toInt()

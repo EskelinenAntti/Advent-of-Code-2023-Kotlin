@@ -2,5 +2,6 @@ package com.eskelinenantti.resources
 
 import java.lang.IllegalArgumentException
 
-fun readResource(file: String): String = object {}::class.java.getResource(file)?.readText()
-    ?: throw IllegalArgumentException("File not found")
+fun inputForPuzzle(day: Int): List<String> =
+    object {}::class.java.getResource("/inputs/$day.txt")?.readText()?.split("\n")
+        ?: throw IllegalArgumentException("File not found")

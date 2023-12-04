@@ -1,4 +1,4 @@
-import com.eskelinenantti.resources.readResource
+import com.eskelinenantti.resources.inputForPuzzle
 import kotlin.math.abs
 
 object Solution3B {
@@ -16,8 +16,8 @@ object Solution3B {
 }
 
 fun main() {
-    val inputData = readResource("/inputs/3.txt")
-    val numberLocations = inputData.split("\n").withIndex().map {
+    val inputData = inputForPuzzle(3)
+    val numberLocations = inputData.withIndex().map {
         val yCoord = it.index
         Regex("""\d+""").findAll(it.value).map { match ->
             Solution3B.NumberLocation(match.value.toInt(), (match.range.start..match.range.endInclusive).map { xCoord ->
@@ -26,7 +26,7 @@ fun main() {
         }.toList()
     }.flatten()
 
-    val gearLocations = inputData.split("\n").withIndex().map {
+    val gearLocations = inputData.withIndex().map {
         val yCoord = it.index
         it.value.withIndex().filter { char ->
             char.value == '*'

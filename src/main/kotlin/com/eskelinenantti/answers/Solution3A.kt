@@ -1,6 +1,6 @@
 package com.eskelinenantti.answers
 
-import com.eskelinenantti.resources.readResource
+import com.eskelinenantti.resources.inputForPuzzle
 import kotlin.math.abs
 
 object Solution3A {
@@ -15,9 +15,9 @@ object Solution3A {
 }
 
 fun main() {
-    val inputData = readResource("/inputs/3.txt")
+    val inputData = inputForPuzzle(3)
 
-    val numberLocations = inputData.split("\n").withIndex().map {
+    val numberLocations = inputData.withIndex().map {
         val yCoord = it.index
         Regex("""\d+""").findAll(it.value).map { match ->
             Solution3A.NumberLocation(match.value.toInt(), (match.range.start..match.range.endInclusive).map { xCoord ->
@@ -26,7 +26,7 @@ fun main() {
         }.toList()
     }.flatten()
 
-    val symbolLocations = inputData.split("\n").withIndex().map {
+    val symbolLocations = inputData.withIndex().map {
         val yCoord = it.index
         it.value.withIndex().filter { char ->
             char.value.isDigit().not() && char.value != '.'
